@@ -1,2 +1,2 @@
 # Security-Analysis
-Security Analysis - `Purple/Blue-Team` oriented repository, with Threat Intelligence, Sherlocks
+`Purple/Blue-Team` oriented repository with Threat Intelligence, Blue Team Challenges (Sherlocks) and Blue Team mirroring/commentary on Red Team engagements.
