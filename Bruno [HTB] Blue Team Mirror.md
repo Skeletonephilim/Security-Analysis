@@ -1,7 +1,7 @@
 
 Date : 28/06/2026
 
-This is the `blue team` mirror of the `Bruno [MEDIUM].md` Black-Box that can be found in my `HTB-Black-Box` repository.
+This is the `blue team` mirror of the `Bruno [MEDIUM].md` Black-Box that can be found in my `Offensive-Security-Writeups` repository.
 
 Important split:
 
