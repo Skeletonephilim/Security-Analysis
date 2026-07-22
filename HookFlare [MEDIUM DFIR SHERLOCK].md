@@ -156,28 +156,6 @@ Message: Hello
 
 Frame 127 is `Data-Type: payment` — second line is `Card Number: 5453004085527987`. Victim name matches the SMS thread (`Hi Phillip`).
 
-Answers :
-
-Task 1 — `2025-02-01 16:20:32`
-
-Task 2 — `2025-02-01 17:03:23`
-
-Task 3 — `com.s1rx58.s1rbank`
-
-Task 4 — `4`
-
-Task 5 — `2025-02-01 17:07:18`
-
-Task 6 — `http://s1rbank.net:80/api/data`
-
-Task 7 — `HEAD`
-
-Task 8 — `https://discord.com/api/webhooks/1334648260610097303/-Lkxr0eZRO_fb_SaumBbBMZyANM3lyeCkR-E1NXXRASPbtRdNksQSzx4pY1ZGQkFR2H8`
-
-Task 9 — `0x_S1r_x58!@#53cuReK371337!$%^&*`
-
-Task 10 — `Card Number: 5453004085527987`
-
 ```bash
 > docker stop mobsf-hookflare
 > docker rm mobsf-hookflare
