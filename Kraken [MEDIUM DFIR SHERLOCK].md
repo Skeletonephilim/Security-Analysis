@@ -135,28 +135,3 @@ Persistence is already on the image under the user Startup folder — same bat b
 
 Chain in one line : zip lure → `Conf.js` (WSCRIPT) → `temp_993805.bat` → `dwm.bat` + AMSI patch → in-memory .NET loaders → decrypt `xxxxxxxxxxxxxxxxxxxxxxxxxxxx.exe` → Neptune/Mason RAT → intended C2 `107.172.232.84:2468`, Startup `5c74.bat`. Containment cut the channel before full C2 ; IoCs still sit in the staged files.
 
-Answers :
-
-Task 1 — `2025-06-13 14:43:27`
-
-Task 2 — `temp_993805.bat`
-
-Task 3 — `0xb8,0x00,0x00,0x00,0x00,0xc3`
-
-Task 4 — `dwm.bat`
-
-Task 5 — `339e27243df24f2b8979e78711e396698f4f47cc`
-
-Task 6 — `xxxxxxxxxxxxxxxxxxxxxxxxxxxx.exe`
-
-Task 7 — `ALWIGeOnxudniHR2K4CNZmnaEZffXt6zKsRFoAM2/mA=,JXYbOTuuz3cErOl30kAKhw==`
-
-Task 8 — `052c0687f023564a3c31fb652bea3405341272cb`
-
-Task 9 — `Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1`
-
-Task 10 — `Territories`
-
-Task 11 — `107.172.232.84:2468`
-
-Task 12 — `C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\5c74.bat`
