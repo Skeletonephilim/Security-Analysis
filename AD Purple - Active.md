@@ -399,7 +399,7 @@ Cracking performance lower than expected?                  
  https://hashcat.net/faq/morework  
   
 [REDACTED]
-38d01e66564c5ccc808e1a889d43475550ef9a7e32aab059b13b7541cd67da796e6298cf500cac02966f6579c88531c92ee9333b16deeace7870733f1bc959c51c81abfb3fa8142cef711904c8a1cc4f55d7ec9f24e9bf5254a6778023d5b0d70de9e:Ticketmaster  
+38d01e66564c5ccc808e1a889d43475550ef9a7e32aab059b13b7541cd67da796e6298cf500cac02966f6579c88531c92ee9333b16deeace7870733f1bc959c51c81abfb3fa8142cef711904c8a1cc4f55d7ec9f24e9bf5254a6778023d5b0d70de9e:[REDACTED]  
 1968  
                                                             
 Session..........: hashcat  
