@@ -17,8 +17,6 @@ Hypothesis to prove: compromised third-party package -> staged payload -> persis
 
 This is supply-chain first contact, not direct host exploit.
 
----
-
 Phase 0 — cockpit orientation (Splunk panic)
 
 Panels that mattered:
@@ -34,8 +32,6 @@ First mistake was reading the first rows on the wrong host.
 That is normal Windows login UI noise, not malware.
 
 Scar `HH-0`: first row in a SIEM is rarely the story — scope the victim host first.
-
----
 
 Phase 1 — host scope and npm hunt
 
@@ -59,8 +55,6 @@ Why this shape:
 `| head 30` caps noise while learning
 
 We got six events on `paw-tom` — a short burst, good for chaining.
-
----
 
 Phase 2 — initial access (Stage 1 report)
 
@@ -113,8 +107,6 @@ IOCs we should have pasted fuller:
 `PAW-TOM\itadmin-tom`
 `paw-tom`
 
----
-
 Phase 3 — staging on disk (Stage 2 report)
 
 Timestamp: `21/06/2025 10:58:27`
@@ -139,8 +131,6 @@ Do not repeat:
 calling this `User Execution` — Tom did not manually execute the `.ps1`
 calling this `Command and Scripting Interpreter` at file-create only — interpreter fires on the next process row, not on `EventCode 11`
 
----
-
 Phase 4 — benign npm tail (noise discipline)
 
 Right after the malicious minute, Splunk showed more `node.exe` rows at `10:58:28` and `10:59:04`.
@@ -160,8 +150,6 @@ npm list / npm-prefix.js     -> ignore for reporting
 
 We initially thought one of these had to be "execution" because they were the last process rows in the scroll window.
 Wrong neighborhood. Execution and persistence were in the `10:58:27–29` cluster, not the npm cleanup tail.
-
----
 
 Phase 5 — execution (hunt gap — IOC rubric pain)
 
@@ -211,7 +199,6 @@ index=* paw-tom "*wlndows*"
 Tactic: `Execution`
 Technique: `Command and Scripting Interpreter` (`T1059` parent — PowerShell sub-technique not in dropdown)
 
----
 
 Phase 6 — persistence (Stage 3 report — found)
 
@@ -261,7 +248,6 @@ IOCs we should have listed as separate graded lines:
 `SystemHealthUpdater.exe`
 `%APPDATA%\Roaming\SystemHealthUpdater.exe`
 
----
 
 Phase 7 — room results
 
@@ -289,9 +275,7 @@ Graded IOC checklist for next hunt:
 `Registry Path` -> HKCU Run full path
 `Registry Value Name` -> `Windows Update Monitor`
 
----
-
-Full chain (operator order)
+Full chain :
 
 ```text
 10:58:24  Tom runs npm install healthchk-lib@1.0.1 from C:\Development (PowerShell parent)
@@ -309,8 +293,6 @@ MITRE spine filed:
 `T1059` — PowerShell execution (encoded)
 `T1547` — Run key persistence
 
----
-
 Splunk literacy scars (personal)
 
 `HH-S1`: IOC rubric 20% — paste exact artifact types, not only narrative
@@ -325,21 +307,6 @@ LogonUI on `paw-penny` is the incident -> retired after host scope
 transitive dependency installed `healthchk-lib@1.0.1` without direct CLI -> retired after explicit install string
 Content Injection technique for npm stage -> retired; supply chain is the correct frame
 
----
-
-Comprehension verdict
-
-First defensive hunt sim where chain assembly felt fun (7/10 overall).
-Splunk syntax and thousand-row noise was the un-fun half — same scar as early SIEM exposure, not incompetence.
-Stronger at parent/child process reads and supply-chain framing than at graded IOC paste discipline.
-Pairs naturally after `FortySeven-1` TI reading: there we merged vendor reports; here we merged `Sysmon` stages on one host.
-
-Next rep (compass):
-
-`HTB Traffic Analysis Pitfalls` or PCAP Sherlock — packets instead of Splunk
-defer Wi-Fi hardware lane until Wireshark can read a capture without gadget guilt
-
-Purple note for later:
 
 defender sees `EventCode 11` on `postinstall.ps1` seconds after `node.exe install`
 hunter links `ProcessGuid` from install -> file create -> powershell child -> `EventCode 13` Run key
