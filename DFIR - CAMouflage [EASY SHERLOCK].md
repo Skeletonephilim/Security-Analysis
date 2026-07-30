@@ -16,7 +16,7 @@ Sherlock : CAMouflage (DFIR / KAPE triage)
 
 Initial access — cracked installer runs
 
-A **parser** reads a binary format and emits fields (name, run count, timestamps). Win10 Prefetch is `MAM`-compressed; Arch’s stock `prefetch` CLI dies on that. `pyscca` (`python-libscca-python`) via portable CPython 3.12 is the translator.
+A parser reads a binary format and emits fields (name, run count, timestamps). Win10 Prefetch is `MAM`-compressed; Arch’s stock `prefetch` CLI dies on that. `pyscca` (`python-libscca-python`) via portable CPython 3.12 is the translator.
 
 ```bash
 > ls "$C/Windows/prefetch" | rg -i 'master|crack'
@@ -43,7 +43,7 @@ PY
 
 Installer lifespan end — BAM (not Prefetch mtime)
 
-Prefetch run entries are **starts**. `.pf` Modified from CopyLog (`18:35:58`) is a flush — not process end. `BAM : Background Activity Moderator` (`SYSTEM\...\bam\State\UserSettings\<SID>`) keeps last-activity FILETIME per image path → installer `2025-06-21 18:36:52`. Sibling `extrac32.exe` (real SysWOW64 `LOLBin : Living-off-the-Land Binary`) lands around `18:36:04` for `.cab` unpack — not a patched mock binary.
+Prefetch run entries are starts. `.pf` Modified from CopyLog (`18:35:58`) is a flush — not process end. `BAM : Background Activity Moderator` (`SYSTEM\...\bam\State\UserSettings\<SID>`) keeps last-activity FILETIME per image path → installer `2025-06-21 18:36:52`. Sibling `extrac32.exe` (real SysWOW64 `LOLBin : Living-off-the-Land Binary`) lands around `18:36:04` for `.cab` unpack — not a patched mock binary.
 
 `ATT&CK ID : (host artifact) BAM last binary activity — closes installer window when 4689 is absent`
 
